@@ -1,0 +1,10 @@
+E:\Documentos\TESP_2ano_ProjetosStandalone\TS_ProjetoFinal_TESP\src\Cliente\bin\Debug\Cliente.exe.config
+E:\Documentos\TESP_2ano_ProjetosStandalone\TS_ProjetoFinal_TESP\src\Cliente\bin\Debug\Cliente.exe
+E:\Documentos\TESP_2ano_ProjetosStandalone\TS_ProjetoFinal_TESP\src\Cliente\bin\Debug\Cliente.pdb
+E:\Documentos\TESP_2ano_ProjetosStandalone\TS_ProjetoFinal_TESP\src\Cliente\obj\Debug\Cliente.csproj.AssemblyReference.cache
+E:\Documentos\TESP_2ano_ProjetosStandalone\TS_ProjetoFinal_TESP\src\Cliente\obj\Debug\Cliente.Form_Login.resources
+E:\Documentos\TESP_2ano_ProjetosStandalone\TS_ProjetoFinal_TESP\src\Cliente\obj\Debug\Cliente.Properties.Resources.resources
+E:\Documentos\TESP_2ano_ProjetosStandalone\TS_ProjetoFinal_TESP\src\Cliente\obj\Debug\Cliente.csproj.GenerateResource.cache
+E:\Documentos\TESP_2ano_ProjetosStandalone\TS_ProjetoFinal_TESP\src\Cliente\obj\Debug\Cliente.csproj.CoreCompileInputs.cache
+E:\Documentos\TESP_2ano_ProjetosStandalone\TS_ProjetoFinal_TESP\src\Cliente\obj\Debug\Cliente.exe
+E:\Documentos\TESP_2ano_ProjetosStandalone\TS_ProjetoFinal_TESP\src\Cliente\obj\Debug\Cliente.pdb

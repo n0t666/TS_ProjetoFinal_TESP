@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Cliente.Forms;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,9 +16,16 @@ namespace Cliente
         [STAThread]
         static void Main()
         {
+            // Criação da base de dados caso não exista 
+            var chatContext = new ChatContext();
+            chatContext.Database.CreateIfNotExists();
+            chatContext.SaveChanges();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form_Login());
+            Database.SetInitializer<ChatContext>(new CreateDatabaseIfNotExists<ChatContext>());
         }
+
     }
 }

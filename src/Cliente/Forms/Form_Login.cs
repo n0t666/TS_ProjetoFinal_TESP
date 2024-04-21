@@ -1,7 +1,9 @@
 ﻿using Cliente.Forms;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -11,33 +13,36 @@ using System.Windows.Forms;
 
 namespace Cliente
 {
-    public partial class Form_Login : Form
+    public partial class Form_Login : Form_Borderless
     {
+        private bool passwordEscondida = true;
+
         public Form_Login()
         {
             InitializeComponent();
+            criarEventosPanel(this.panel_topBar);
+            criarEventosBtns(this.pictureBox_fechar, this.pictureBox_minimizar);
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
+        //Evento que é chamado quando o botão de login é pressionado
         private void button_login_Click(object sender, EventArgs e)
         {
             //Caso as credenciais inseridas sejam null ou vazias
-            if(string.IsNullOrEmpty(textBox_username.Text) || string.IsNullOrEmpty(textBox_password.Text))
+            if (string.IsNullOrWhiteSpace(textBox_username.Text) || string.IsNullOrWhiteSpace(textBox_password.Text))
             {
-                MessageBox.Show("Por favor, preencha todos os campos necessários","Aviso",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, preencha todos os campos necessários", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            else{
-                using (var db = new ChatContext())
+            else
+            {
+                using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["Chat"].ConnectionString))
                 {
+                    ChatContext db = new ChatContext(connection, false);
+                    connection.Open();
+
                     //Procura o utilizador na base de dados
                     var utilizador = db.Utilizadores.FirstOrDefault(u => u.Username == textBox_username.Text);
-                    if(utilizador == null)
+                    if (utilizador == null)
                     {
                         MessageBox.Show("Utilizador não encontrado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
@@ -49,20 +54,18 @@ namespace Cliente
                         byte[] hash = RegisterHelper.GerarBytesHash(textBox_password.Text, salt, 1000);
                         string passwordHash = Convert.ToBase64String(hash);
 
-                        if(passwordHash == utilizador.Password)
+                        if (passwordHash == utilizador.Password)
                         {
-                            var frm = new Form2();
-                            frm.Location = this.Location;
+                            var frm = new Form_Chat(textBox_username.Text);
                             frm.Show();
                             this.Hide();
                         }
                         else
                         {
-                            MessageBox.Show("Password incorreta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("Password ou utilizador errado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
                     }
-
                 }
             }
         }
@@ -72,12 +75,32 @@ namespace Cliente
 
         }
 
+        //Evento que é chamado quando o label de registar é pressionado
         private void label_registar_Click(object sender, EventArgs e)
         {
+            //Mudar para a janela de registo
             var frm = new Form_Register();
             frm.Location = this.Location;
             frm.Show();
             this.Hide();
+
+        }
+
+        private void button_PasswordToggler_Click(object sender, EventArgs e)
+        {
+            //Caso a password esteja escondida, mostra-a
+            if (passwordEscondida)
+            {
+                textBox_password.UseSystemPasswordChar = false;
+                button_PasswordToggler.BackgroundImage = Properties.Resources.esconderPwd;
+                passwordEscondida = false;
+            }
+            else //Caso contrário, esconde-a
+            {
+                textBox_password.UseSystemPasswordChar = true;
+                button_PasswordToggler.BackgroundImage = Properties.Resources.mostrarPwd;
+                passwordEscondida = true;
+            }
 
         }
     }

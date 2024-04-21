@@ -1,9 +1,11 @@
-﻿using System;
+﻿using EI.SI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Servidor
@@ -37,16 +39,48 @@ namespace Servidor
     class ClientHandler
     {
         private TcpClient Cliente;
-        private int NumeroClientes ;
+        private int IdCliente;
 
-        public ClientHandler(TcpClient cliente, int numeroClientes)
+        public ClientHandler(TcpClient cliente, int idCliente)
         {
             this.Cliente = cliente;
-            this.NumeroClientes = numeroClientes;
+            this.IdCliente = idCliente;
         }
 
-        public void Handle() { }
+        public void Handle()
+        {
+            Thread thread = new Thread(threadHandler);
+            thread.Start();
+        }
 
+        private void threadHandler()
+        {
+            NetworkStream networkStream = this.Cliente.GetStream();
+            ProtocolSI protocolSI = new ProtocolSI();
+            while (protocolSI.GetCmdType() != ProtocolSICmdType.EOT)
+            {
+                int bytesRead = networkStream.Read(protocolSI.Buffer, 0,
+                    protocolSI.Buffer.Length);
+                byte[] ack;
+                switch (protocolSI.GetCmdType())
+                {
+                    case ProtocolSICmdType.DATA:
+                        Console.WriteLine("Client " + IdCliente + ": " +
+                            protocolSI.GetStringFromData());
+                        ack = protocolSI.Make(ProtocolSICmdType.ACK);
+                        networkStream.Write(ack, 0, ack.Length);
+                        break;
+
+                    case ProtocolSICmdType.EOT:
+                        Console.WriteLine("Ending Thread from Client {0}", IdCliente);
+                        ack = protocolSI.Make(ProtocolSICmdType.ACK);
+                        networkStream.Write(ack, 0, ack.Length);
+                        break;
+                }
+            }
+            networkStream.Close();
+            Cliente.Close();
+        }
     }
 }
 

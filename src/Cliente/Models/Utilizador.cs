@@ -15,7 +15,7 @@ namespace Cliente
         public int id { get; set; }
 
         [Required(ErrorMessage = "Necessita de introduzir o nome!")]
-        [RegularExpression(@"^[a-zA-Z ]+$", ErrorMessage = "O nome apenas pode conter letras.")] //Apenas letras permitidas e espaços
+        [RegularExpression(@"^[a-zA-ZãáàâéêíóõôúüçÇ ]+$", ErrorMessage = "O nome apenas pode conter letras.")] //Apenas letras permitidas e espaços
         public string Nome { get; set; }
 
         [Required(ErrorMessage ="Necessita de introduzir o username!")]
@@ -27,5 +27,8 @@ namespace Cliente
         public string Salt { get; set; }
 
         public string ChavePublica { get; set; }
+
+        public virtual ICollection<Mensagem> Mensagens { get; set; }
+
     }
 }

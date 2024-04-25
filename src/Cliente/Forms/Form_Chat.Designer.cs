@@ -122,6 +122,7 @@
             this.Name = "Form_Chat";
             this.Text = "Form_Chat";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Chat_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form_Chat_FormClosed);
             this.Load += new System.EventHandler(this.Form_Chat_Load);
             this.panel_topBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_minimizar)).EndInit();

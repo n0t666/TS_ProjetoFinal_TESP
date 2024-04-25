@@ -1,6 +1,7 @@
 ﻿using EI.SI;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -20,15 +21,18 @@ namespace Servidor
             TcpListener listener = new TcpListener(endPoint);
 
             listener.Start();
-            Console.WriteLine("SERVIDOR PRONTO!");
+            Console.WriteLine("SERVIDOR PRONTO!");  
             int numeroClientes = 0;
+            string msg;
 
             while (true)
             {
                 TcpClient client = listener.AcceptTcpClient();
                 numeroClientes++;
-                Console.WriteLine("Cliente {0} connectou-se", numeroClientes);
+                msg = string.Format("Cliente {0}: connectou-se ({1})", numeroClientes, DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss"));
+                Console.WriteLine(msg);
                 ClientHandler clientHandler = new ClientHandler(client, numeroClientes);
+                clientHandler.Log(msg);
                 clientHandler.Handle();
             }
         }
@@ -53,6 +57,18 @@ namespace Servidor
             thread.Start();
         }
 
+        // Método para escrever no ficheiro log.txt com os eventos do servidor na pasta root do projeto
+        public void Log(string msg)
+        {
+            string nomeFicheiro = "log.txt";
+            string rootProjeto = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\")); // Subir duas pastas para a raiz do projeto
+            string caminho = Path.Combine(rootProjeto, nomeFicheiro);
+            using (StreamWriter w = File.AppendText(caminho))
+            {
+                w.WriteLine(msg);
+            }
+        }
+
         private void threadHandler()
         {
             NetworkStream networkStream = this.Cliente.GetStream();
@@ -65,14 +81,17 @@ namespace Servidor
                 switch (protocolSI.GetCmdType())
                 {
                     case ProtocolSICmdType.DATA:
-                        Console.WriteLine("Client " + IdCliente + ": " +
-                            protocolSI.GetStringFromData());
+                        string msg = string.Format("Cliente {0}: enviou uma mensagem ({1})", IdCliente, DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss"));
+                        Console.WriteLine("Cliente {0}: {1} ({2})", IdCliente, protocolSI.GetStringFromData(), DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss"));
+                        Log(msg);
                         ack = protocolSI.Make(ProtocolSICmdType.ACK);
                         networkStream.Write(ack, 0, ack.Length);
                         break;
 
                     case ProtocolSICmdType.EOT:
-                        Console.WriteLine("Ending Thread from Client {0}", IdCliente);
+                        string msgEOT = string.Format("Cliente {0}: disconectou-se ({1})", IdCliente, DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss"));
+                        Console.WriteLine(msgEOT);
+                        Log(msgEOT);
                         ack = protocolSI.Make(ProtocolSICmdType.ACK);
                         networkStream.Write(ack, 0, ack.Length);
                         break;

@@ -12,6 +12,8 @@ namespace Cliente
 {
     internal class RegisterHelper
     {
+
+        // Função que gera um salt aleatório
         public static byte[] GerarSalt(int tamanho)
         {
             RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
@@ -20,6 +22,7 @@ namespace Cliente
             return buffer;
         }
 
+        // Função que faz o hash da password
         public static byte[] GerarBytesHash(string password, byte[] salt,int numInteracoes)
         {
             Rfc2898DeriveBytes rfc = new Rfc2898DeriveBytes(password, salt, numInteracoes);
@@ -49,13 +52,14 @@ namespace Cliente
         public static bool ValidarPassword(string password)
         {
             // Expressões regulares que fazem a validação da password
-            var temNumero = new Regex("[0-9]+");
-            var temMaiuscula = new Regex("[A-Z]+");
-            var temMinuscula = new Regex("[a-z]+");
-            var temMinimoCaracteres = new Regex(".{8,}");
+            var temNumero = new Regex("[0-9]+"); // Possui pelo menos um número
+            var temMaiuscula = new Regex("[A-Z]+"); // Possui pelo menos uma letra maiúscula
+            var temMinuscula = new Regex("[a-z]+"); // Possui pelo menos uma letra minúscula
+            var temMinimoCaracteres = new Regex(".{8,}"); // Mínimo de 8 caracteres
             var temCaracterEspecial = new Regex("[!@#$%^&*()_+=\\[\\]{};:<>|./?,-]"); // Qualquer carácter especial
             // -------------------------
 
+            // Comparar a password inserida com os padrões definidos
             if (temNumero.IsMatch(password) && temMaiuscula.IsMatch(password) && temMinuscula.IsMatch(password) && temMinimoCaracteres.IsMatch(password) && temCaracterEspecial.IsMatch(password))
             {
                 return true;

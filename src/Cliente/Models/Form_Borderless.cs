@@ -18,6 +18,7 @@ namespace Cliente
             this.MouseDown += Form_Borderless_MouseDown; // Evento que é chamado quando o rato é pressionado
             this.MouseMove += Form_Borderless_MouseMove; // Evento que é chamado quando o rato é movido
             this.MouseUp += Form_Borderless_MouseUp;
+            this.StartPosition = FormStartPosition.CenterScreen; // Inicializa o form no centro do ecrã
         }
         private void Form_Borderless_MouseDown(object sender, MouseEventArgs e)
         {

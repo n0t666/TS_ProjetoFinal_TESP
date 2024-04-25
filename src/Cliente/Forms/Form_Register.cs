@@ -27,6 +27,7 @@ namespace Cliente.Forms
             InitializeComponent();
             criarEventosPanel(this.panel_topBar);
             criarEventosBtns(this.pictureBox_fechar, this.pictureBox_minimizar);
+            this.AcceptButton = button_register; // Permite fazer registo ao pressionar a tecla Enter
         }
 
         private void button_register_Click(object sender, EventArgs e)

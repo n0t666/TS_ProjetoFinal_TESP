@@ -10,6 +10,7 @@ namespace Cliente
 {
     internal class Mensagem
     {
+        //Especificar o id como chave primária
         [Key]
         public int id { get; set; }
 
@@ -21,6 +22,7 @@ namespace Cliente
 
         public int UtilizadorId { get; set; }
 
+        //Relação muitos para 1 com a tabela Utilizador
         [ForeignKey("UtilizadorId")]
         public virtual Utilizador Utilizador { get; set; }
 

@@ -3,40 +3,12 @@
   "WorkspaceRootPath": "E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4AAA6C78-2F55-4498-BC57-AC96B52AF417}|Cliente\\Cliente.csproj|e:\\documentos\\tesp_2ano_projetosstandalone\\ts_projetofinal_tesp\\src\\cliente\\forms\\form_chat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4AAA6C78-2F55-4498-BC57-AC96B52AF417}|Cliente\\Cliente.csproj|solutionrelative:cliente\\forms\\form_chat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4AAA6C78-2F55-4498-BC57-AC96B52AF417}|Cliente\\Cliente.csproj|e:\\documentos\\tesp_2ano_projetosstandalone\\ts_projetofinal_tesp\\src\\cliente\\forms\\form_chat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{4AAA6C78-2F55-4498-BC57-AC96B52AF417}|Cliente\\Cliente.csproj|solutionrelative:cliente\\forms\\form_chat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4AAA6C78-2F55-4498-BC57-AC96B52AF417}|Cliente\\Cliente.csproj|e:\\documentos\\tesp_2ano_projetosstandalone\\ts_projetofinal_tesp\\src\\cliente\\models\\chatcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4AAA6C78-2F55-4498-BC57-AC96B52AF417}|Cliente\\Cliente.csproj|solutionrelative:cliente\\models\\chatcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E65DF4B2-DE47-4A90-84B0-763F6BC2BCAA}|Servidor\\Servidor.csproj|e:\\documentos\\tesp_2ano_projetosstandalone\\ts_projetofinal_tesp\\src\\servidor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E65DF4B2-DE47-4A90-84B0-763F6BC2BCAA}|Servidor\\Servidor.csproj|solutionrelative:servidor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4AAA6C78-2F55-4498-BC57-AC96B52AF417}|Cliente\\Cliente.csproj|e:\\documentos\\tesp_2ano_projetosstandalone\\ts_projetofinal_tesp\\src\\cliente\\models\\utilizador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4AAA6C78-2F55-4498-BC57-AC96B52AF417}|Cliente\\Cliente.csproj|solutionrelative:cliente\\models\\utilizador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4AAA6C78-2F55-4498-BC57-AC96B52AF417}|Cliente\\Cliente.csproj|e:\\documentos\\tesp_2ano_projetosstandalone\\ts_projetofinal_tesp\\src\\cliente\\forms\\form_login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{4AAA6C78-2F55-4498-BC57-AC96B52AF417}|Cliente\\Cliente.csproj|solutionrelative:cliente\\forms\\form_login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4AAA6C78-2F55-4498-BC57-AC96B52AF417}|Cliente\\Cliente.csproj|e:\\documentos\\tesp_2ano_projetosstandalone\\ts_projetofinal_tesp\\src\\cliente\\models\\mensagem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4AAA6C78-2F55-4498-BC57-AC96B52AF417}|Cliente\\Cliente.csproj|solutionrelative:cliente\\models\\mensagem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4AAA6C78-2F55-4498-BC57-AC96B52AF417}|Cliente\\Cliente.csproj|e:\\documentos\\tesp_2ano_projetosstandalone\\ts_projetofinal_tesp\\src\\cliente\\forms\\form_login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4AAA6C78-2F55-4498-BC57-AC96B52AF417}|Cliente\\Cliente.csproj|solutionrelative:cliente\\forms\\form_login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4AAA6C78-2F55-4498-BC57-AC96B52AF417}|Cliente\\Cliente.csproj|e:\\documentos\\tesp_2ano_projetosstandalone\\ts_projetofinal_tesp\\src\\cliente\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4AAA6C78-2F55-4498-BC57-AC96B52AF417}|Cliente\\Cliente.csproj|solutionrelative:cliente\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4AAA6C78-2F55-4498-BC57-AC96B52AF417}|Cliente\\Cliente.csproj|e:\\documentos\\tesp_2ano_projetosstandalone\\ts_projetofinal_tesp\\src\\cliente\\forms\\form_chat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4AAA6C78-2F55-4498-BC57-AC96B52AF417}|Cliente\\Cliente.csproj|solutionrelative:cliente\\forms\\form_chat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,121 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\Servidor\\Program.cs",
               "RelativeDocumentMoniker": "Servidor\\Program.cs",
               "ToolTip": "E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\Servidor\\Program.cs",
               "RelativeToolTip": "Servidor\\Program.cs",
-              "ViewState": "AQIAACwAAAAAAAAAAAAwwAAAAAALAAAA",
+              "ViewState": "AQIAAEgAAAAAAAAAAAAmwDsAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-20T23:43:34.503Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Form_Login.cs",
-              "DocumentMoniker": "E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\Cliente\\Forms\\Form_Login.cs",
-              "RelativeDocumentMoniker": "Cliente\\Forms\\Form_Login.cs",
-              "ToolTip": "E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\Cliente\\Forms\\Form_Login.cs",
-              "RelativeToolTip": "Cliente\\Forms\\Form_Login.cs",
-              "ViewState": "AQIAAFoAAAAAAAAAAAAhwEIAAAAZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-20T19:40:39.884Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ChatContext.cs",
-              "DocumentMoniker": "E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\Cliente\\Models\\ChatContext.cs",
-              "RelativeDocumentMoniker": "Cliente\\Models\\ChatContext.cs",
-              "ToolTip": "E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\Cliente\\Models\\ChatContext.cs",
-              "RelativeToolTip": "Cliente\\Models\\ChatContext.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAkwBcAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-20T19:44:33.236Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Form_Login.cs [Design]",
-              "DocumentMoniker": "E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\Cliente\\Forms\\Form_Login.cs",
-              "RelativeDocumentMoniker": "Cliente\\Forms\\Form_Login.cs",
-              "ToolTip": "E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\Cliente\\Forms\\Form_Login.cs [Design]",
-              "RelativeToolTip": "Cliente\\Forms\\Form_Login.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-20T19:40:37.826Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Utilizador.cs",
-              "DocumentMoniker": "E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\Cliente\\Models\\Utilizador.cs",
-              "RelativeDocumentMoniker": "Cliente\\Models\\Utilizador.cs",
-              "ToolTip": "E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\Cliente\\Models\\Utilizador.cs",
-              "RelativeToolTip": "Cliente\\Models\\Utilizador.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAUwBMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-20T19:58:53.913Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Mensagem.cs",
-              "DocumentMoniker": "E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\Cliente\\Models\\Mensagem.cs",
-              "RelativeDocumentMoniker": "Cliente\\Models\\Mensagem.cs",
-              "ToolTip": "E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\Cliente\\Models\\Mensagem.cs",
-              "RelativeToolTip": "Cliente\\Models\\Mensagem.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAQwBcAAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-20T19:43:24.18Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form_Chat.cs",
-              "DocumentMoniker": "E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\Cliente\\Forms\\Form_Chat.cs",
-              "RelativeDocumentMoniker": "Cliente\\Forms\\Form_Chat.cs",
-              "ToolTip": "E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\Cliente\\Forms\\Form_Chat.cs",
-              "RelativeToolTip": "Cliente\\Forms\\Form_Chat.cs",
-              "ViewState": "AQIAAEYAAAAAAAAAAADwv14AAABRAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-20T19:15:07.633Z",
+              "WhenOpened": "2024-04-25T03:33:09.364Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Form_Chat.cs [Design]",
+              "Title": "Form_Chat.cs",
               "DocumentMoniker": "E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\Cliente\\Forms\\Form_Chat.cs",
               "RelativeDocumentMoniker": "Cliente\\Forms\\Form_Chat.cs",
-              "ToolTip": "E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\Cliente\\Forms\\Form_Chat.cs [Design]",
-              "RelativeToolTip": "Cliente\\Forms\\Form_Chat.cs [Design]",
+              "ToolTip": "E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\Cliente\\Forms\\Form_Chat.cs",
+              "RelativeToolTip": "Cliente\\Forms\\Form_Chat.cs",
+              "ViewState": "AQIAAK8AAAAAAAAAAAAjwMgAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-20T19:15:06.047Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\Cliente\\Program.cs",
-              "RelativeDocumentMoniker": "Cliente\\Program.cs",
-              "ToolTip": "E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\Cliente\\Program.cs",
-              "RelativeToolTip": "Cliente\\Program.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAA1wB8AAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-20T22:58:31.846Z",
+              "WhenOpened": "2024-04-20T19:15:07.633Z",
               "EditorCaption": ""
             }
           ]

@@ -22,12 +22,13 @@ namespace Cliente
             InitializeComponent();
             criarEventosPanel(this.panel_topBar);
             criarEventosBtns(this.pictureBox_fechar, this.pictureBox_minimizar);
+            this.AcceptButton = button_login; // Permite fazer login ao pressionar a tecla Enter
         }
 
         //Evento que é chamado quando o botão de login é pressionado
         private void button_login_Click(object sender, EventArgs e)
         {
-            //Caso as credenciais inseridas sejam null ou vazias
+            //Caso as credenciais inseridas sejam null ou contenham espaços em branco
             if (string.IsNullOrWhiteSpace(textBox_username.Text) || string.IsNullOrWhiteSpace(textBox_password.Text))
             {
                 MessageBox.Show("Por favor, preencha todos os campos necessários", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -50,7 +51,7 @@ namespace Cliente
                     else
                     {
                         //Verifica se a password inserida é igual à password guardada na base de dados
-                        byte[] salt = Convert.FromBase64String(utilizador.Salt);
+                        byte[] salt = Convert.FromBase64String(utilizador.Salt); 
                         byte[] hash = RegisterHelper.GerarBytesHash(textBox_password.Text, salt, 1000);
                         string passwordHash = Convert.ToBase64String(hash);
 
@@ -80,7 +81,6 @@ namespace Cliente
         {
             //Mudar para a janela de registo
             var frm = new Form_Register();
-            frm.Location = this.Location;
             frm.Show();
             this.Hide();
 

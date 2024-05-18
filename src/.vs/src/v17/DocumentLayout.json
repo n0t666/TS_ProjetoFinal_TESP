@@ -3,6 +3,7 @@
   "WorkspaceRootPath": "E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\",
   "Documents": [
     {
+<<<<<<< HEAD
       "AbsoluteMoniker": "D:0:0:{4AAA6C78-2F55-4498-BC57-AC96B52AF417}|Cliente\\Cliente.csproj|e:\\documentos\\tesp_2ano_projetosstandalone\\ts_projetofinal_tesp\\src\\cliente\\forms\\form_chat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{4AAA6C78-2F55-4498-BC57-AC96B52AF417}|Cliente\\Cliente.csproj|solutionrelative:cliente\\forms\\form_chat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
@@ -65,6 +66,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{4AAA6C78-2F55-4498-BC57-AC96B52AF417}|Cliente\\Cliente.csproj|E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\cliente\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{4AAA6C78-2F55-4498-BC57-AC96B52AF417}|Cliente\\Cliente.csproj|solutionrelative:cliente\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+=======
+      "AbsoluteMoniker": "D:0:0:{E65DF4B2-DE47-4A90-84B0-763F6BC2BCAA}|Servidor\\Servidor.csproj|e:\\documentos\\tesp_2ano_projetosstandalone\\ts_projetofinal_tesp\\src\\servidor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E65DF4B2-DE47-4A90-84B0-763F6BC2BCAA}|Servidor\\Servidor.csproj|solutionrelative:servidor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4AAA6C78-2F55-4498-BC57-AC96B52AF417}|Cliente\\Cliente.csproj|e:\\documentos\\tesp_2ano_projetosstandalone\\ts_projetofinal_tesp\\src\\cliente\\forms\\form_chat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4AAA6C78-2F55-4498-BC57-AC96B52AF417}|Cliente\\Cliente.csproj|solutionrelative:cliente\\forms\\form_chat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+>>>>>>> parent of 84276c7 (1º fase - projeto (Entrega))
     }
   ],
   "DocumentGroupContainers": [
@@ -79,6 +88,7 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+<<<<<<< HEAD
               "Title": "Form_Chat.cs [Design]",
               "DocumentMoniker": "E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\Cliente\\Forms\\Form_Chat.cs",
               "RelativeDocumentMoniker": "Cliente\\Forms\\Form_Chat.cs",
@@ -256,12 +266,18 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
+=======
+>>>>>>> parent of 84276c7 (1º fase - projeto (Entrega))
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\Servidor\\Program.cs",
               "RelativeDocumentMoniker": "Servidor\\Program.cs",
               "ToolTip": "E:\\Documentos\\TESP_2ano_ProjetosStandalone\\TS_ProjetoFinal_TESP\\src\\Servidor\\Program.cs",
               "RelativeToolTip": "Servidor\\Program.cs",
+<<<<<<< HEAD
               "ViewState": "AQIAAAAAAAAAAAAAAAAAADsAAAARAAAA",
+=======
+              "ViewState": "AQIAAEgAAAAAAAAAAAAmwDsAAAARAAAA",
+>>>>>>> parent of 84276c7 (1º fase - projeto (Entrega))
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-25T03:33:09.364Z",
               "EditorCaption": ""

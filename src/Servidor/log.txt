@@ -2,6 +2,7 @@ Cliente 1: connectou-se (04/25/2024 04:44:41)
 Cliente 1: connectou-se (04/25/2024 04:46:52)
 Cliente 1: enviou uma mensagem (04/25/2024 04:46:54)
 Cliente 1: disconectou-se (04/25/2024 04:47:12)
+<<<<<<< HEAD
 Cliente 1: connectou-se (04/27/2024 01:46:14)
 Cliente 1: disconectou-se (04/27/2024 01:46:22)
 Cliente 1: connectou-se (05/18/2024 12:05:39)
@@ -10,3 +11,5 @@ Cliente 1: enviou uma mensagem (05/18/2024 12:06:30)
 Cliente 2: enviou uma mensagem (05/18/2024 12:06:31)
 Cliente 1: disconectou-se (05/18/2024 12:06:43)
 Cliente 2: disconectou-se (05/18/2024 12:06:45)
+=======
+>>>>>>> parent of 84276c7 (1º fase - projeto (Entrega))

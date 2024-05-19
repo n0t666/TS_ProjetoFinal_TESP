@@ -1,9 +1,0 @@
-E:\Documentos\TESP_2ano_ProjetosStandalone\TS_ProjetoFinal_TESP\src\Servidor\bin\Debug\Servidor.exe.config
-E:\Documentos\TESP_2ano_ProjetosStandalone\TS_ProjetoFinal_TESP\src\Servidor\bin\Debug\Servidor.exe
-E:\Documentos\TESP_2ano_ProjetosStandalone\TS_ProjetoFinal_TESP\src\Servidor\bin\Debug\Servidor.pdb
-E:\Documentos\TESP_2ano_ProjetosStandalone\TS_ProjetoFinal_TESP\src\Servidor\obj\Debug\Servidor.csproj.AssemblyReference.cache
-E:\Documentos\TESP_2ano_ProjetosStandalone\TS_ProjetoFinal_TESP\src\Servidor\obj\Debug\Servidor.csproj.CoreCompileInputs.cache
-E:\Documentos\TESP_2ano_ProjetosStandalone\TS_ProjetoFinal_TESP\src\Servidor\obj\Debug\Servidor.exe
-E:\Documentos\TESP_2ano_ProjetosStandalone\TS_ProjetoFinal_TESP\src\Servidor\obj\Debug\Servidor.pdb
-E:\Documentos\TESP_2ano_ProjetosStandalone\TS_ProjetoFinal_TESP\src\Servidor\bin\Debug\ProtocolSI.dll
-E:\Documentos\TESP_2ano_ProjetosStandalone\TS_ProjetoFinal_TESP\src\Servidor\obj\Debug\Servidor.csproj.Up2Date

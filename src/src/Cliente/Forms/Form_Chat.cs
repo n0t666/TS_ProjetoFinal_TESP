@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using EI.SI;
 using MySql.Data.MySqlClient;
+using SaaUI;
 
 namespace Cliente.Forms
 { 
@@ -27,7 +28,7 @@ namespace Cliente.Forms
         ProtocolSI protocoloSI;
         //--------------------------------------------------------------------------------
 
-        private DateTime dataUltimaMensagem = DateTime.MinValue; // Variável para armazenar a data da última mensagem
+        private DateTime dataUltimaMensagem; // Variável para armazenar a data da última mensagem
 
         //Construtor 
         public Form_Chat(string username)
@@ -51,7 +52,7 @@ namespace Cliente.Forms
 
         private void Form_Chat_Load(object sender, EventArgs e)
         {
-            atualizarMensagens();
+            carregarTodasMensagens();
             timer_UpdateMsgs.Start();
         }
 
@@ -120,6 +121,33 @@ namespace Cliente.Forms
         //Método para atualizar as mensagens na listbox
         private void atualizarMensagens()
         {
+            if (dataUltimaMensagem != null)
+            {
+                using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["Chat"].ConnectionString))
+                {
+                    ChatContext db = new ChatContext(connection, false);
+                    connection.Open();
+                    //Query para obter todas as mensagens associadas ao utilizador atual
+                    var mensagens = db.Mensagens
+                        .Include(u => u.Utilizador.Mensagens.Select(m => m.Utilizador))
+                        .Where(m => m.DataEnvio > dataUltimaMensagem)
+                        .Where(u => u.Utilizador.id != utilizadorAtual.id)
+                        .OrderBy(m => m.DataEnvio)
+                        .ToList();
+                    if (mensagens.Any())
+                    {
+                        foreach (Mensagem msg in mensagens) // Para cada mensagem associada ao utilizador atual, adicionar à listbox
+                        {
+                            criarComponenteMensagem(msg.Texto, msg.Utilizador.id);
+                        }
+                        dataUltimaMensagem = mensagens.Max(m => m.DataEnvio);
+                    }
+                }
+            }
+        }
+
+        private void carregarTodasMensagens()
+        {
             using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["Chat"].ConnectionString))
             {
                 ChatContext db = new ChatContext(connection, false);
@@ -127,24 +155,19 @@ namespace Cliente.Forms
                 //Query para obter todas as mensagens associadas ao utilizador atual
                 var mensagens = db.Mensagens
                     .Include(u => u.Utilizador.Mensagens.Select(m => m.Utilizador))
-                    .Where(m => m.DataEnvio > dataUltimaMensagem)
+                    .OrderBy(m => m.DataEnvio)
                     .ToList();
                 if (mensagens.Any())
                 {
                     //Fazer update da listbox, utilizar o método BeginUpdate e EndUpdate para melhorar a performance ao adicionar vários itens 
-                    listBox_mensagens.BeginUpdate();
-                    listBox_mensagens.Items.Clear();
                     foreach (Mensagem msg in mensagens) // Para cada mensagem associada ao utilizador atual, adicionar à listbox
                     {
-                        listBox_mensagens.Items.Add(msg.Utilizador.Nome + ": " + msg.Texto + "(" + msg.DataEnvio.ToShortTimeString() + ")");
+                        criarComponenteMensagem(msg.Texto, msg.Utilizador.id);
                     }
-                    listBox_mensagens.EndUpdate();
+                    dataUltimaMensagem = mensagens.Max(m => m.DataEnvio);
                 }
-
-
-            
-
             }
+
         }
 
         //Método para obter o objeto Utilizador com base no username com o qual o utilizador se autenticou
@@ -179,6 +202,8 @@ namespace Cliente.Forms
                 db.SaveChanges();
 
                 dataUltimaMensagem = msg.DataEnvio; // Atualizar a data da última mensagem
+
+                criarComponenteMensagem(mensagem, utilizadorAtual.id);
 
               
             }
@@ -216,6 +241,50 @@ namespace Cliente.Forms
         private void timer_UpdateMsgs_Tick(object sender, EventArgs e)
         {
             atualizarMensagens();
+
+        }
+
+        private void criarComponenteMensagem(string mensagem,int id)
+        {
+            SaaChatBubble chatBubble = new SaaChatBubble();
+            Label lab = new Label();
+            lab.Text = id.ToString();
+
+            if (mensagem.Length > 350)
+            {
+                chatBubble.MinimumSize = new Size(300, 300);
+            }
+            else if (mensagem.Length > 100)
+            {
+                chatBubble.MinimumSize = new Size(300, 150);
+            }
+            else
+            {
+                chatBubble.MinimumSize = new Size(300, 80);
+            }
+  
+
+            if (id == utilizadorAtual.id)
+            {
+                chatBubble.MsgBackground = Color.Red;
+            }
+            else
+            {
+                chatBubble.MsgBackground = Color.Blue;
+                chatBubble.Margin = new Padding(200, 0, 0, 0);
+            }
+            
+            chatBubble.BackColor = Color.Transparent;
+            chatBubble.Profile = false;
+            chatBubble.Padding = new Padding(10);
+            chatBubble.BodyPadding = new Padding(10);
+            chatBubble.PeakPosition = PeakPositions.TopRight;
+            chatBubble.ProfilePosition = BubbleProfilePosition.Right;
+            chatBubble.Peak = false;
+            chatBubble.Body = mensagem;
+            flowLayoutPanel1.Controls.Add(lab);
+            flowLayoutPanel1.Controls.Add(chatBubble);
+            flowLayoutPanel1.ScrollControlIntoView(chatBubble);
 
         }
     }

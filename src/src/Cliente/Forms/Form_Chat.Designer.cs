@@ -33,10 +33,10 @@
             this.panel_topBar = new System.Windows.Forms.Panel();
             this.pictureBox_minimizar = new System.Windows.Forms.PictureBox();
             this.pictureBox_fechar = new System.Windows.Forms.PictureBox();
-            this.listBox_mensagens = new System.Windows.Forms.ListBox();
             this.textBox_mensagem = new System.Windows.Forms.TextBox();
             this.button_enviarMsg = new System.Windows.Forms.Button();
             this.timer_UpdateMsgs = new System.Windows.Forms.Timer(this.components);
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel_topBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_minimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_fechar)).BeginInit();
@@ -73,20 +73,10 @@
             this.pictureBox_fechar.TabIndex = 1;
             this.pictureBox_fechar.TabStop = false;
             // 
-            // listBox_mensagens
-            // 
-            this.listBox_mensagens.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBox_mensagens.FormattingEnabled = true;
-            this.listBox_mensagens.Location = new System.Drawing.Point(69, 83);
-            this.listBox_mensagens.Name = "listBox_mensagens";
-            this.listBox_mensagens.Size = new System.Drawing.Size(523, 221);
-            this.listBox_mensagens.TabIndex = 3;
-            this.listBox_mensagens.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-            // 
             // textBox_mensagem
             // 
             this.textBox_mensagem.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox_mensagem.Location = new System.Drawing.Point(69, 333);
+            this.textBox_mensagem.Location = new System.Drawing.Point(69, 549);
             this.textBox_mensagem.Multiline = true;
             this.textBox_mensagem.Name = "textBox_mensagem";
             this.textBox_mensagem.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -104,7 +94,7 @@
             this.button_enviarMsg.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.button_enviarMsg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_enviarMsg.ForeColor = System.Drawing.Color.Transparent;
-            this.button_enviarMsg.Location = new System.Drawing.Point(536, 333);
+            this.button_enviarMsg.Location = new System.Drawing.Point(536, 549);
             this.button_enviarMsg.Name = "button_enviarMsg";
             this.button_enviarMsg.Size = new System.Drawing.Size(56, 49);
             this.button_enviarMsg.TabIndex = 5;
@@ -113,17 +103,26 @@
             // 
             // timer_UpdateMsgs
             // 
-            this.timer_UpdateMsgs.Interval = 10000;
+            this.timer_UpdateMsgs.Interval = 5000;
             this.timer_UpdateMsgs.Tick += new System.EventHandler(this.timer_UpdateMsgs_Tick);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(69, 69);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(523, 458);
+            this.flowLayoutPanel1.TabIndex = 7;
             // 
             // Form_Chat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(650, 450);
+            this.ClientSize = new System.Drawing.Size(651, 676);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.button_enviarMsg);
             this.Controls.Add(this.textBox_mensagem);
-            this.Controls.Add(this.listBox_mensagens);
             this.Controls.Add(this.panel_topBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form_Chat";
@@ -144,9 +143,9 @@
         private System.Windows.Forms.PictureBox pictureBox_minimizar;
         private System.Windows.Forms.PictureBox pictureBox_fechar;
         private System.Windows.Forms.Panel panel_topBar;
-        private System.Windows.Forms.ListBox listBox_mensagens;
         private System.Windows.Forms.TextBox textBox_mensagem;
         private System.Windows.Forms.Button button_enviarMsg;
         private System.Windows.Forms.Timer timer_UpdateMsgs;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

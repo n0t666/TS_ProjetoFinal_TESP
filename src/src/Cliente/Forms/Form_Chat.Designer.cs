@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Chat));
             this.panel_topBar = new System.Windows.Forms.Panel();
             this.pictureBox_minimizar = new System.Windows.Forms.PictureBox();
@@ -35,6 +36,7 @@
             this.listBox_mensagens = new System.Windows.Forms.ListBox();
             this.textBox_mensagem = new System.Windows.Forms.TextBox();
             this.button_enviarMsg = new System.Windows.Forms.Button();
+            this.timer_UpdateMsgs = new System.Windows.Forms.Timer(this.components);
             this.panel_topBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_minimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_fechar)).BeginInit();
@@ -109,6 +111,11 @@
             this.button_enviarMsg.UseVisualStyleBackColor = false;
             this.button_enviarMsg.Click += new System.EventHandler(this.button_enviarMsg_Click);
             // 
+            // timer_UpdateMsgs
+            // 
+            this.timer_UpdateMsgs.Interval = 10000;
+            this.timer_UpdateMsgs.Tick += new System.EventHandler(this.timer_UpdateMsgs_Tick);
+            // 
             // Form_Chat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -140,5 +147,6 @@
         private System.Windows.Forms.ListBox listBox_mensagens;
         private System.Windows.Forms.TextBox textBox_mensagem;
         private System.Windows.Forms.Button button_enviarMsg;
+        private System.Windows.Forms.Timer timer_UpdateMsgs;
     }
 }

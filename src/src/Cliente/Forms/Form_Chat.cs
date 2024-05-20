@@ -15,7 +15,8 @@ using EI.SI;
 using MySql.Data.MySqlClient;
 
 namespace Cliente.Forms
-{
+{ 
+
     public partial class Form_Chat : Form_Borderless
     {
         //Declaração de variáveis para a conexão com o servidor
@@ -26,8 +27,10 @@ namespace Cliente.Forms
         ProtocolSI protocoloSI;
         //--------------------------------------------------------------------------------
 
+        private DateTime dataUltimaMensagem = DateTime.MinValue; // Variável para armazenar a data da última mensagem
+
         //Construtor 
-        public Form_Chat(string username) 
+        public Form_Chat(string username)
         {
             InitializeComponent();
             criarEventosPanel(this.panel_topBar); //Chamada ao método para permitir mover a barra superior
@@ -49,6 +52,7 @@ namespace Cliente.Forms
         private void Form_Chat_Load(object sender, EventArgs e)
         {
             atualizarMensagens();
+            timer_UpdateMsgs.Start();
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -79,17 +83,17 @@ namespace Cliente.Forms
         //Método para enviar a mensagem
         private void button_enviarMsg_Click(object sender, EventArgs e)
         {
-            if(!string.IsNullOrWhiteSpace(textBox_mensagem.Text)) // Certificar-se que existe realmente algum contéudo da textbox da mensagem
+            if (!string.IsNullOrWhiteSpace(textBox_mensagem.Text)) // Certificar-se que existe realmente algum contéudo da textbox da mensagem
             {
                 string mensagem = textBox_mensagem.Text; // Extrair a mensagem da textbox
                 textBox_mensagem.Clear();
                 armazenharMensagem(mensagem);
                 byte[] pacote = protocoloSI.Make(ProtocolSICmdType.DATA, mensagem); // Criar o pacote com a mensagem
                 networkStream.Write(pacote, 0, pacote.Length);
-                while(protocoloSI.GetCmdType() != ProtocolSICmdType.ACK) 
+                while (protocoloSI.GetCmdType() != ProtocolSICmdType.ACK)
                 {
                     networkStream.Read(protocoloSI.Buffer, 0, protocoloSI.Buffer.Length);
-                    
+
                 }
             }
             else {
@@ -106,7 +110,7 @@ namespace Cliente.Forms
             networkStream.Close();
             clienteTCP.Close();
         }
-        
+
         //Ao fechar a janela, chamar o método para fechar o cliente
         private void Form_Chat_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -116,23 +120,29 @@ namespace Cliente.Forms
         //Método para atualizar as mensagens na listbox
         private void atualizarMensagens()
         {
-            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["Chat"].ConnectionString)) 
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["Chat"].ConnectionString))
             {
                 ChatContext db = new ChatContext(connection, false);
                 connection.Open();
                 //Query para obter todas as mensagens associadas ao utilizador atual
-                var mensagens= db.Mensagens
+                var mensagens = db.Mensagens
                     .Include(u => u.Utilizador.Mensagens.Select(m => m.Utilizador))
+                    .Where(m => m.DataEnvio > dataUltimaMensagem)
                     .ToList();
-
-                //Fazer update da listbox, utilizar o método BeginUpdate e EndUpdate para melhorar a performance ao adicionar vários itens 
-                listBox_mensagens.BeginUpdate();
-                listBox_mensagens.Items.Clear();
-                foreach (Mensagem msg in mensagens) // Para cada mensagem associada ao utilizador atual, adicionar à listbox
+                if (mensagens.Any())
                 {
-                    listBox_mensagens.Items.Add(msg.Utilizador.Nome + ": " + msg.Texto + "(" + msg.DataEnvio.ToShortTimeString() + ")");
+                    //Fazer update da listbox, utilizar o método BeginUpdate e EndUpdate para melhorar a performance ao adicionar vários itens 
+                    listBox_mensagens.BeginUpdate();
+                    listBox_mensagens.Items.Clear();
+                    foreach (Mensagem msg in mensagens) // Para cada mensagem associada ao utilizador atual, adicionar à listbox
+                    {
+                        listBox_mensagens.Items.Add(msg.Utilizador.Nome + ": " + msg.Texto + "(" + msg.DataEnvio.ToShortTimeString() + ")");
+                    }
+                    listBox_mensagens.EndUpdate();
                 }
-                listBox_mensagens.EndUpdate();
+
+
+            
 
             }
         }
@@ -156,7 +166,7 @@ namespace Cliente.Forms
                 ChatContext db = new ChatContext(connection, false);
                 connection.Open();
 
-                Mensagem msg = new Mensagem(); 
+                Mensagem msg = new Mensagem();
                 msg.Texto = mensagem;
                 msg.DataEnvio = DateTime.Now;
                 msg.UtilizadorId = utilizadorAtual.id;
@@ -166,15 +176,17 @@ namespace Cliente.Forms
                 db.Mensagens.Add(msg);
 
 
-                db.SaveChanges();   
+                db.SaveChanges();
 
-                atualizarMensagens(); // Chamar o método para atualizar as mensagens na listbox
+                dataUltimaMensagem = msg.DataEnvio; // Atualizar a data da última mensagem
+
+              
             }
         }
 
         private void textBox_mensagem_Enter(object sender, EventArgs e)
         {
-            
+
         }
 
 
@@ -182,7 +194,7 @@ namespace Cliente.Forms
         //Se o shift e o enter forem pressionados, é criada uma nova linha na textbox
         private void textBox_mensagem_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true; // Impedir que a tecla Enter tenha o seu comportamento padrão (criar uma nova linha)
                 if (e.Modifiers == Keys.Shift) // Se a tecla ENTER + Shift for pressionada, criar uma nova linha
@@ -200,5 +212,12 @@ namespace Cliente.Forms
         {
             fecharCliente();
         }
+
+        private void timer_UpdateMsgs_Tick(object sender, EventArgs e)
+        {
+            atualizarMensagens();
+
+        }
     }
-}
+    }
+

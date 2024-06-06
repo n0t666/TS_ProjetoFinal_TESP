@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Cliente
 {
@@ -70,10 +71,44 @@ namespace Cliente
             }
         }
 
+        // Função que verifica se existe mais do que um utilizador online,no máximo 2 utilizadores online
+        public static bool VerificarNumeroUtilizadoresOnline(int id)
+        {
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["Chat"].ConnectionString))
+            {
+                ChatContext db = new ChatContext(connection, false);
+                var utilizadores = db.Utilizadores.Where(u => u.Online == true).ToList(); // Procura o utilizador na base de dados com o username inserido 
+                MessageBox.Show(utilizadores.Count.ToString());
+                if (utilizadores.Count > 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
 
-        
+        public static void AlterarEstado(int id, bool estado)
+        {
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["Chat"].ConnectionString))
+            {
+                ChatContext db = new ChatContext(connection, false);
+                var utilizador = db.Utilizadores.Where(u => u.id == id).SingleOrDefault();
+                if (utilizador != null)
+                {
+                    utilizador.Online = estado;
+                    db.SaveChanges();
 
-        
+                }
+            }
+        }
+
+
+
+
+
 
 
     }

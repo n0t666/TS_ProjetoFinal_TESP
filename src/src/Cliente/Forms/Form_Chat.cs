@@ -47,6 +47,14 @@ namespace Cliente.Forms
             networkStream = clienteTCP.GetStream();
             protocoloSI = new ProtocolSI();
             //--------------------------------------------------------------------------------
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["Chat"].ConnectionString))
+            {
+                ChatContext db = new ChatContext(connection, false);
+                connection.Open();
+                var utilizador = db.Utilizadores.Where(u => u.Username == username).FirstOrDefault(); // Procura o utilizador na base de dados com o username inserido 
+                utilizador.Online = true;
+                db.SaveChanges();
+            }
 
         }
 
@@ -110,6 +118,8 @@ namespace Cliente.Forms
             networkStream.Read(protocoloSI.Buffer, 0, protocoloSI.Buffer.Length);
             networkStream.Close();
             clienteTCP.Close();
+            RegisterHelper.AlterarEstado(utilizadorAtual.id, false);
+      
         }
 
         //Ao fechar a janela, chamar o método para fechar o cliente
@@ -247,8 +257,6 @@ namespace Cliente.Forms
         private void criarComponenteMensagem(string mensagem,int id)
         {
             SaaChatBubble chatBubble = new SaaChatBubble();
-            Label lab = new Label();
-            lab.Text = id.ToString();
 
             if (mensagem.Length > 350)
             {
@@ -282,7 +290,6 @@ namespace Cliente.Forms
             chatBubble.ProfilePosition = BubbleProfilePosition.Right;
             chatBubble.Peak = false;
             chatBubble.Body = mensagem;
-            flowLayoutPanel1.Controls.Add(lab);
             flowLayoutPanel1.Controls.Add(chatBubble);
             flowLayoutPanel1.ScrollControlIntoView(chatBubble);
 

@@ -57,9 +57,19 @@ namespace Cliente
 
                         if (passwordHash == utilizador.Password)
                         {
-                            var frm = new Form_Chat(textBox_username.Text);
-                            frm.Show();
-                            this.Hide();
+                            if (RegisterHelper.VerificarNumeroUtilizadoresOnline(utilizador.id))
+                            {
+                                MessageBox.Show("No máximo apenas é permitido 2 utilizadores simultaneamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+                            else
+                            {
+                                RegisterHelper.AlterarEstado(utilizador.id, true);
+                                var frm = new Form_Chat(textBox_username.Text);
+                                frm.Show();
+                                this.Hide();
+                            }
+
                         }
                         else
                         {

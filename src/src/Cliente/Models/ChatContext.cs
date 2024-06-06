@@ -30,13 +30,12 @@ namespace Cliente
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Utilizador>()
                 .ToTable("Utilizadores")
-                .MapToStoredProcedures()
                 .HasMany(u => u.Mensagens)
                 .WithRequired(e=> e.Utilizador)
                 .HasForeignKey(e=> e.UtilizadorId)
                 .WillCascadeOnDelete(); // Cria a tabela Utilizadores e especifica o nome da tabela
             modelBuilder.Entity<Mensagem>()
-                .ToTable("Mensagens").MapToStoredProcedures(); // Cria a tabela Mensagens e especifica o nome da tabel
+                .ToTable("Mensagens"); // Cria a tabela Mensagens e especifica o nome da tabel
         }
 
 

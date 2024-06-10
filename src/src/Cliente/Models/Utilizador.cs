@@ -28,6 +28,8 @@ namespace Cliente
 
         public string ChavePublica { get; set; }
 
+        public string ChavePrivada { get; set; }
+
         public bool Online { get; set; }
 
         public virtual ICollection<Mensagem> Mensagens { get; set; } //Relação 1 para muitos com a tabela Mensagem

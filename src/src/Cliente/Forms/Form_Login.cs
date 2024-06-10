@@ -57,7 +57,13 @@ namespace Cliente
 
                         if (passwordHash == utilizador.Password)
                         {
-                            if (RegisterHelper.VerificarNumeroUtilizadoresOnline(utilizador.id))
+                            if(utilizador.Online == true) //Verifica se o utilizador já se encontra online e não permite o login
+                            {
+                                MessageBox.Show("Utilizador já se encontra online", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+
+                            if (RegisterHelper.VerificarNumeroUtilizadoresOnline(utilizador.id)) //Verifica se já existem 2 utilizadores online, caso existam, não permite o login
                             {
                                 MessageBox.Show("No máximo apenas é permitido 2 utilizadores simultaneamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 return;

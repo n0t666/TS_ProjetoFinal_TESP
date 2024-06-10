@@ -68,13 +68,14 @@ namespace Cliente.Forms
 
                 rsa = new RSACryptoServiceProvider();
                 string chavePublica = rsa.ToXmlString(false);
+                string chavePrivada = rsa.ToXmlString(true);
 
                 try 
                 {
                     using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["Chat"].ConnectionString))
                     {
                         ChatContext db = new ChatContext(connection, false);
-                        var utilizador = new Utilizador { Username = username, Password = passwordHash, Salt = Convert.ToBase64String(salt), Nome = nome, ChavePublica = chavePublica };
+                        var utilizador = new Utilizador { Username = username, Password = passwordHash, Salt = Convert.ToBase64String(salt), Nome = nome, ChavePublica = chavePublica,ChavePrivada = chavePrivada };
 
                         db.Utilizadores.Add(utilizador);
                         db.SaveChanges();

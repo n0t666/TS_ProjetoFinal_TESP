@@ -5,11 +5,12 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Servidor
+namespace Cliente
 {
     internal class Program
     {
@@ -21,7 +22,7 @@ namespace Servidor
             TcpListener listener = new TcpListener(endPoint);
 
             listener.Start();
-            Console.WriteLine("SERVIDOR PRONTO!");  
+            Console.WriteLine("SERVIDOR PRONTO!");
             int numeroClientes = 0;
             string msg;
 
@@ -75,14 +76,14 @@ namespace Servidor
             ProtocolSI protocolSI = new ProtocolSI();
             while (protocolSI.GetCmdType() != ProtocolSICmdType.EOT)
             {
-                int bytesRead = networkStream.Read(protocolSI.Buffer, 0,
-                    protocolSI.Buffer.Length);
+                int bytesRead = networkStream.Read(protocolSI.Buffer, 0,protocolSI.Buffer.Length);
                 byte[] ack;
                 switch (protocolSI.GetCmdType())
                 {
                     case ProtocolSICmdType.DATA:
+                        string mensagem = protocolSI.GetStringFromData();
                         string msg = string.Format("Cliente {0}: enviou uma mensagem ({1})", IdCliente, DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss"));
-                        Console.WriteLine("Cliente {0}: {1} ({2})", IdCliente, protocolSI.GetStringFromData(), DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss"));
+                        Console.WriteLine(msg);
                         Log(msg);
                         ack = protocolSI.Make(ProtocolSICmdType.ACK);
                         networkStream.Write(ack, 0, ack.Length);

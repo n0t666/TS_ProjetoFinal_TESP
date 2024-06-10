@@ -18,13 +18,22 @@ namespace Cliente
         public string Texto { get; set; }
 
         [Required]
+        public string Assinatura { get; set; }
+
+        [Required]
         public DateTime DataEnvio{ get; set; }
 
         public int UtilizadorId { get; set; }
 
+        public int RecetorId { get; set; }
+
         //Relação muitos para 1 com a tabela Utilizador
         [ForeignKey("UtilizadorId")]
         public virtual Utilizador Utilizador { get; set; }
+
+        //Relação muitos para 1 com a tabela Utilizador
+        [ForeignKey("RecetorId")]
+        public virtual Utilizador Recetor { get; set; }
 
         
     }

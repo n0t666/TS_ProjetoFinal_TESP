@@ -78,7 +78,6 @@ namespace Cliente
             {
                 ChatContext db = new ChatContext(connection, false);
                 var utilizadores = db.Utilizadores.Where(u => u.Online == true).ToList(); // Procura o utilizador na base de dados com o username inserido 
-                MessageBox.Show(utilizadores.Count.ToString());
                 if (utilizadores.Count > 1)
                 {
                     return true;
@@ -87,6 +86,16 @@ namespace Cliente
                 {
                     return false;
                 }
+            }
+        }
+
+        public static int NumeroUtilizadoresOnline()
+        {
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["Chat"].ConnectionString))
+            {
+                ChatContext db = new ChatContext(connection, false);
+                var utilizadores = db.Utilizadores.Where(u => u.Online == true).ToList(); // Procura o utilizador na base de dados com o username inserido 
+                return utilizadores.Count;
             }
         }
 
@@ -102,6 +111,16 @@ namespace Cliente
                     db.SaveChanges();
 
                 }
+            }
+        }
+
+        public static Utilizador GetOnlineReceiver(int idSender)
+        {
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["Chat"].ConnectionString))
+            {
+                ChatContext db = new ChatContext(connection, false);
+                var utilizador = db.Utilizadores.Where(u => u.id != idSender && u.Online == true).SingleOrDefault();
+                return utilizador;
             }
         }
 

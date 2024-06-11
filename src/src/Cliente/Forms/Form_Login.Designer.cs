@@ -38,14 +38,14 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label_registar = new System.Windows.Forms.Label();
             this.panel_topBar = new System.Windows.Forms.Panel();
-            this.button_PasswordToggler = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox_minimizar = new System.Windows.Forms.PictureBox();
             this.pictureBox_fechar = new System.Windows.Forms.PictureBox();
+            this.button_PasswordToggler = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel_topBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_minimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_fechar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox_username
@@ -141,6 +141,26 @@
             this.panel_topBar.Size = new System.Drawing.Size(441, 47);
             this.panel_topBar.TabIndex = 0;
             // 
+            // pictureBox_minimizar
+            // 
+            this.pictureBox_minimizar.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_minimizar.Image")));
+            this.pictureBox_minimizar.Location = new System.Drawing.Point(365, 12);
+            this.pictureBox_minimizar.Name = "pictureBox_minimizar";
+            this.pictureBox_minimizar.Size = new System.Drawing.Size(29, 27);
+            this.pictureBox_minimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_minimizar.TabIndex = 5;
+            this.pictureBox_minimizar.TabStop = false;
+            // 
+            // pictureBox_fechar
+            // 
+            this.pictureBox_fechar.Image = global::Cliente.Properties.Resources.fechar;
+            this.pictureBox_fechar.Location = new System.Drawing.Point(400, 12);
+            this.pictureBox_fechar.Name = "pictureBox_fechar";
+            this.pictureBox_fechar.Size = new System.Drawing.Size(29, 27);
+            this.pictureBox_fechar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_fechar.TabIndex = 4;
+            this.pictureBox_fechar.TabStop = false;
+            // 
             // button_PasswordToggler
             // 
             this.button_PasswordToggler.BackgroundImage = global::Cliente.Properties.Resources.mostrarPwd;
@@ -164,26 +184,6 @@
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             // 
-            // pictureBox_minimizar
-            // 
-            this.pictureBox_minimizar.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_minimizar.Image")));
-            this.pictureBox_minimizar.Location = new System.Drawing.Point(365, 12);
-            this.pictureBox_minimizar.Name = "pictureBox_minimizar";
-            this.pictureBox_minimizar.Size = new System.Drawing.Size(29, 27);
-            this.pictureBox_minimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox_minimizar.TabIndex = 5;
-            this.pictureBox_minimizar.TabStop = false;
-            // 
-            // pictureBox_fechar
-            // 
-            this.pictureBox_fechar.Image = global::Cliente.Properties.Resources.fechar;
-            this.pictureBox_fechar.Location = new System.Drawing.Point(400, 12);
-            this.pictureBox_fechar.Name = "pictureBox_fechar";
-            this.pictureBox_fechar.Size = new System.Drawing.Size(29, 27);
-            this.pictureBox_fechar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox_fechar.TabIndex = 4;
-            this.pictureBox_fechar.TabStop = false;
-            // 
             // Form_Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -201,12 +201,14 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.panel_topBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_Login";
+            this.Text = "ChatterBox | Entrar";
             this.Load += new System.EventHandler(this.Form_Login_Load);
             this.panel_topBar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_minimizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_fechar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

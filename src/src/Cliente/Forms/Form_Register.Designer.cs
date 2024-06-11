@@ -230,9 +230,10 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.panel_topBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_Register";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Form_Register";
+            this.Text = "ChatterBox | Registar";
             this.Load += new System.EventHandler(this.Form_Register_Load);
             this.panel_topBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_minimizar)).EndInit();

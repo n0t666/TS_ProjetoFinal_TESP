@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Cliente
 {
-    internal class Mensagem
+    public class Mensagem
     {
         //Especificar o id como chave primária
         [Key]

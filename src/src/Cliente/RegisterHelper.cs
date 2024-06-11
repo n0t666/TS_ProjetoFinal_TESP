@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -13,6 +14,8 @@ namespace Cliente
 {
     internal class RegisterHelper
     {
+        private const int NUM_INTERACOES = 1000;
+        private const int TAMANHO_SALT = 32;
 
         // Função que gera um salt aleatório
         public static byte[] GerarSalt(int tamanho)
@@ -32,12 +35,20 @@ namespace Cliente
 
 
         // Função que verifica se o username inserido já existe na base de dados
-        public static bool VerificarUsername(string username)
+        public static bool VerificarUsername(string username, string usernameExistente = null)
         {
             using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["Chat"].ConnectionString))
             {
+                Utilizador utilizador = null;
                 ChatContext db = new ChatContext(connection, false);
-                var utilizador = db.Utilizadores.Where(u => u.Username == username).FirstOrDefault(); // Procura o utilizador na base de dados com o username inserido 
+                if(!string.IsNullOrEmpty(usernameExistente))
+                {
+                     utilizador = db.Utilizadores.Where(u => u.Username == username && u.Username != usernameExistente).FirstOrDefault(); // Procura o utilizador na base de dados com o username inserido 
+                }
+                else
+                {
+                    utilizador = db.Utilizadores.Where(u => u.Username == username).FirstOrDefault();
+                }
                 if (utilizador != null)
                 {
                     return true;
@@ -124,10 +135,69 @@ namespace Cliente
             }
         }
 
+        public static bool UpdateUtilizador(int id, string nome, string username, string password)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["Chat"].ConnectionString))
+                {
+                    ChatContext db = new ChatContext(connection, false);
+                    var utilizadorBD = db.Utilizadores.Where(u => u.id == id).SingleOrDefault();
+                    if (utilizadorBD != null)
+                    {
+                        if (!string.IsNullOrWhiteSpace(password))
+                        {
+                            if (!ValidarPassword(password))
+                            {
+                                MessageBox.Show("A password não cumpre com os requisitos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return false;
+                            }
 
+                            byte[] salt = Convert.FromBase64String(utilizadorBD.Salt);
+                            byte[] hash = RegisterHelper.GerarBytesHash(password, salt, 1000);
+                            string passwordHash = Convert.ToBase64String(hash);
 
+                            if (passwordHash == utilizadorBD.Password)
+                            {
+                                MessageBox.Show("Palavra-passe já utilizada anteriormente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return false;
+                            }
+                            else
+                            {
+                                utilizadorBD.Password = passwordHash;
+                            }
+                        }
 
+                        utilizadorBD.Nome = nome;
+                        utilizadorBD.Username = username;
 
+                        db.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Utilizador não encontrado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                }
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        MessageBox.Show("Erro: " + validationError.ErrorMessage);
+                    }
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao atualizar utilizador", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+        }
 
 
     }

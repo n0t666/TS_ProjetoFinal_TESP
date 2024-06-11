@@ -12,7 +12,7 @@ namespace Cliente
 {
     
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
-    internal class ChatContext : DbContext
+    public class ChatContext : DbContext
     {
 
 

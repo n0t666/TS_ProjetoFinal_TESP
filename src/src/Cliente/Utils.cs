@@ -47,10 +47,11 @@ namespace Cliente
         // No receptor, verifica se a assinatura é válida com a chave pública do emissor
         public static bool VerifyData(string mensagem, string signature, string publicKey)
         {
-            byte[] mensagemBytes = Encoding.UTF8.GetBytes(mensagem);
-            byte[] signatureBytes = Convert.FromBase64String(signature);
+            if(mensagem!=null && signature !=null & publicKey != null && mensagem.Length > 0 && signature.Length > 0 && publicKey.Length > 0) { 
             try
             {
+                byte[] mensagemBytes = Encoding.UTF8.GetBytes(mensagem);
+            byte[] signatureBytes = Convert.FromBase64String(signature);
                 using (SHA1 sha1 = SHA1.Create())
                 {
                     byte[] hash = sha1.ComputeHash(mensagemBytes);
@@ -67,6 +68,10 @@ namespace Cliente
             catch(Exception e)
             {
                 MessageBox.Show("Ocorreu um erro inesperado: " + e.Message);
+                return false;
+            }
+            }else
+            {
                 return false;
             }
         }

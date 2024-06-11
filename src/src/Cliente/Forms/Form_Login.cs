@@ -70,8 +70,7 @@ namespace Cliente
                             }
                             else
                             {
-                                RegisterHelper.AlterarEstado(utilizador.id, true);
-                                var frm = new Form_Chat(textBox_username.Text);
+                                var frm = new Form_Main(utilizador.id);
                                 frm.Show();
                                 this.Hide();
                             }

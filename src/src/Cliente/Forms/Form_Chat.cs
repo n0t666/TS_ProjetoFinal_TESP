@@ -19,7 +19,7 @@ using SaaUI;
 namespace Cliente.Forms
 {
 
-    public partial class Form_Chat : Form_Borderless
+    public partial class Form_Chat : Form
     {
         //Declaração de variáveis para a conexão com o servidor
         private const int PORTA = 10000;
@@ -32,13 +32,10 @@ namespace Cliente.Forms
         private DateTime dataUltimaMensagem; // Variável para armazenar a data da última mensagem
 
         //Construtor 
-        public Form_Chat(string username)
+        public Form_Chat(int id)
         {
             InitializeComponent();
-            criarEventosPanel(this.panel_topBar); //Chamada ao método para permitir mover a barra superior
-            criarEventosBtns(this.pictureBox_fechar, this.pictureBox_minimizar); //Chamada ao método para permitir fechar e minimizar a janela
-            verificarBotaoEnviar(); //Chamada ao método para verificar se a mensagem está vazia, para ativar ou desativar o botão de enviar
-            obterUtilizador(username); //Chamada ao método para obter o objeto Utilizador com base no username
+            obterUtilizador(id); // Obter o utilizador com base no username
             MessageBox.Show("Bem-vindo " + utilizadorAtual.Nome + "!", "Bem-vindo", MessageBoxButtons.OK, MessageBoxIcon.Information); //Mensagem de boas-vindas
             //--------------------------------------------------------------------------------
             // Conexão com o servidor
@@ -53,8 +50,9 @@ namespace Cliente.Forms
         //Ao carregar o formulário, chamar o método para carregar todas as mensagens e iniciar o timer para atualizar as mensagens
         private void Form_Chat_Load(object sender, EventArgs e)
         {
+            labelReceiver.Text = "Nenhum utilizador online";
             carregarTodasMensagens();
-            timer_UpdateMsgs.Start();
+            timer_UpdateMsgs.Start(); 
         }
 
 
@@ -108,8 +106,9 @@ namespace Cliente.Forms
         }
 
         //Método para fechar o cliente e disconectar do servidor
-        private void fecharCliente()
+        public void fecharCliente()
         {
+            MessageBox.Show("A sessão foi terminada", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             byte[] eot = protocoloSI.Make(ProtocolSICmdType.EOT);
             networkStream.Write(eot, 0, eot.Length);
             networkStream.Read(protocoloSI.Buffer, 0, protocoloSI.Buffer.Length);
@@ -122,7 +121,7 @@ namespace Cliente.Forms
         //Ao fechar a janela, chamar o método para fechar o cliente
         private void Form_Chat_FormClosing(object sender, FormClosingEventArgs e)
         {
-            fecharCliente();
+
         }
 
         //Método para atualizar as mensagens na listbox
@@ -138,7 +137,7 @@ namespace Cliente.Forms
                     var mensagens = db.Mensagens
                         .Include(u => u.Utilizador.Mensagens.Select(m => m.Utilizador))
                         .Where(m => m.DataEnvio > dataUltimaMensagem)
-                        .Where(u => u.Utilizador.id != utilizadorAtual.id)
+                        .Where(u => u.Utilizador.id != utilizadorAtual.id && u.RecetorId == utilizadorAtual.id)
                         .OrderBy(m => m.DataEnvio)
                         .ToList();
                     if (mensagens.Any())
@@ -154,6 +153,8 @@ namespace Cliente.Forms
                             else // Se a mensagem não foi enviada pelo utilizador correto, mostrar uma mensagem de aviso a indicar que a mensagem não é válida
                             {
                                 MessageBox.Show(texto + " - Erro ao validar o emissor da mensagem", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                db.Mensagens.Remove(msg); // Remover a mensagem da base de dados
+                                db.SaveChanges();
                             }
                         }
                         dataUltimaMensagem = mensagens.Max(m => m.DataEnvio);
@@ -190,7 +191,18 @@ namespace Cliente.Forms
                         {
                             texto = Utils.DecryptData(msg.Texto, msg.Recetor.ChavePrivada);
                         }
-                        criarComponenteMensagem(texto, msg.Utilizador.id);
+                         
+                        if(msg.RecetorId == utilizadorAtual.id && !Utils.VerifyData(texto, msg.Assinatura, msg.Utilizador.ChavePublica))
+                        {
+                            MessageBox.Show(texto + " - Erro ao validar o emissor da mensagem", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            db.Mensagens.
+                            Remove(db.Mensagens.FirstOrDefault(m => m.id == msg.id));
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            criarComponenteMensagem(texto, msg.Utilizador.id);
+                        }
                     }
                     dataUltimaMensagem = mensagens.Max(m => m.DataEnvio);
                 }
@@ -198,16 +210,8 @@ namespace Cliente.Forms
 
         }
 
-        //Método para obter o objeto Utilizador com base no username com o qual o utilizador se autenticou
-        private void obterUtilizador(string username)
-        {
-            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["Chat"].ConnectionString))
-            {
-                ChatContext db = new ChatContext(connection, false);
-                connection.Open();
-                utilizadorAtual = db.Utilizadores.Include(u => u.Mensagens).FirstOrDefault(u => u.Username == username);
-            }
-        }
+
+
 
         //Método para armazenhar a mensagem na base de dados
         private void armazenharMensagem(string mensagem)
@@ -286,6 +290,14 @@ namespace Cliente.Forms
         private void timer_UpdateMsgs_Tick(object sender, EventArgs e)
         {
             atualizarMensagens();
+            if(RegisterHelper.NumeroUtilizadoresOnline() == 2)
+            {
+                labelReceiver.Text = RegisterHelper.GetOnlineReceiver(utilizadorAtual.id).Username;
+            }
+            else
+            {
+                labelReceiver.Text = "Nenhum utilizador online";
+            }
 
         }
 
@@ -310,11 +322,11 @@ namespace Cliente.Forms
 
             if (id == utilizadorAtual.id)
             {
-                chatBubble.MsgBackground = Color.Red;
+                chatBubble.MsgBackground = Color.FromArgb(51, 51, 51);
             }
             else
             {
-                chatBubble.MsgBackground = Color.Blue;
+                chatBubble.MsgBackground = Color.FromArgb(92, 92, 92);
                 chatBubble.Margin = new Padding(200, 0, 0, 0);
             }
 
@@ -330,7 +342,20 @@ namespace Cliente.Forms
             flowLayoutPanel1.ScrollControlIntoView(chatBubble);
 
         }
+
+
+        //Método para obter o objeto Utilizador com base no username com o qual o utilizador se autenticou
+        private void obterUtilizador(int id)
+        {
+            using (MySqlConnection connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["Chat"].ConnectionString))
+            {
+                ChatContext db = new ChatContext(connection, false);
+                connection.Open();
+                utilizadorAtual = db.Utilizadores.Include(u => u.Mensagens).FirstOrDefault(u => u.id == id);
+            }
+        }
     }
+
 
 }
 

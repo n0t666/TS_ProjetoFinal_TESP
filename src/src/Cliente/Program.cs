@@ -31,7 +31,7 @@ namespace Cliente
                 }
             }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Erro ao conectar à base de dados", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Environment.Exit(0); // Fecha a aplicação
